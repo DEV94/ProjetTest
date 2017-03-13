@@ -2,19 +2,24 @@ package com.polytech.view;
 
 import com.polytech.business.Post;
 import com.polytech.business.PublicationService;
+import com.polytech.config.ApplicationConfig;
 import com.polytech.repository.PostRepository;
-import com.polytech.repository.PostRepositoryImpl;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 /**
  * Created by dev on 3/13/17.
  */
 public class Main {
     public static void main(String[] args) {
-        System.out.println("CouCou Polytech ");
-        PostRepository postRepository = new PostRepositoryImpl();
-        PublicationService publicationService = new PublicationService(postRepository);
+        //System.out.println("CouCou Polytech ");
 
-        Post post = new Post("Luminy");
+        AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(ApplicationConfig.class);
+
+        //PostRepository postRepository = applicationContext.getBean(PostRepository.class);
+        PublicationService publicationService = applicationContext.getBean(PublicationService.class);
+
+        Post post = new Post("Luminy est cool");
         Post post1 = new Post("Etoil");
         Post post2 = new Post("Test");
         publicationService.post(post);

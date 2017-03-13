@@ -10,7 +10,6 @@ import java.util.List;
 public class PublicationService {
     private PostRepository postRepository;
 
-
     public PublicationService(PostRepository postRepository){
         this.postRepository = postRepository;
     }
