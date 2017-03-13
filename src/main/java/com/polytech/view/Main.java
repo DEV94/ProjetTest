@@ -3,6 +3,7 @@ package com.polytech.view;
 import com.polytech.business.Post;
 import com.polytech.business.PublicationService;
 import com.polytech.repository.PostRepository;
+import com.polytech.repository.PostRepositoryImpl;
 
 /**
  * Created by dev on 3/13/17.
@@ -10,7 +11,7 @@ import com.polytech.repository.PostRepository;
 public class Main {
     public static void main(String[] args) {
         System.out.println("CouCou Polytech ");
-        PostRepository postRepository = new PostRepository();
+        PostRepository postRepository = new PostRepositoryImpl();
         PublicationService publicationService = new PublicationService(postRepository);
 
         Post post = new Post("Luminy");
