@@ -12,11 +12,8 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
  */
 public class Main {
     public static void main(String[] args) {
-        //System.out.println("CouCou Polytech ");
-
         AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(ApplicationConfig.class);
 
-        //PostRepository postRepository = applicationContext.getBean(PostRepository.class);
         PublicationService publicationService = applicationContext.getBean(PublicationService.class);
 
         Post post = new Post("Luminy est cool");
