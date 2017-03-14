@@ -12,6 +12,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
  */
 public class Main {
     public static void main(String[] args) {
+        System.setProperty("spring.profiles.active", "PROD");
         AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(ApplicationConfig.class);
 
         PublicationService publicationService = applicationContext.getBean(PublicationService.class);

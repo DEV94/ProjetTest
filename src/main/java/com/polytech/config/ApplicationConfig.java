@@ -1,15 +1,12 @@
 package com.polytech.config;
 
-import com.polytech.business.PublicationService;
-import com.polytech.repository.PostRepository;
-import com.polytech.repository.JDBCPostRepository;
 import org.apache.commons.dbcp.BasicDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.*;
 import org.springframework.core.env.Environment;
+import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
+import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import javax.sql.DataSource;
 
@@ -18,23 +15,25 @@ import javax.sql.DataSource;
  */
 @Configuration
 @PropertySource("classpath:applicationContext.properties")
+@ComponentScan(basePackages = "com.polytech.repository, com.polytech.business")
 public class ApplicationConfig {
 
     @Autowired
     private Environment environment;
 
-    /*@Value("datasource.driverClassName")
+    /*@Value("${datasource.driverClassName}")
     private String driverClassName;
-    @Value("datasource.url")
+    @Value("${datasource.url}")
     private String url;
-    @Value("datasource.userName")
+    @Value("${datasource.userName}")
     private String userName;
-    @Value("datasource.password")
+    @Value("${datasource.password}")
     private String password;*/
 
 
-    @Bean
-    public DataSource dataSource(){
+    @Bean("dataSource")
+    @Profile("PROD")
+    public DataSource prodDataSource(){
         String driverClassName = environment.getProperty("datasource.driverClassName");
         String url = environment.getProperty("datasource.url");
         String userName = environment.getProperty("datasource.userName");
@@ -47,18 +46,9 @@ public class ApplicationConfig {
         return dataSource;
     }
 
-    /*@Bean
-    public DataSource dataSource(){
+    @Bean("dataSource")
+    @Profile("DEV")
+    public DataSource devProdDataSource(){
         return new EmbeddedDatabaseBuilder().setType(EmbeddedDatabaseType.H2).addScript("create-schema.sql").build();
-    }*/
-
-    @Bean
-    public PostRepository postRepository(DataSource dataSource){
-        return new JDBCPostRepository(dataSource);
-    }
-
-    @Bean
-    public PublicationService publicationService(PostRepository postRepository){
-        return  new PublicationService(postRepository);
     }
 }
