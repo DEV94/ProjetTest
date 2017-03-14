@@ -28,5 +28,4 @@ public class WebApplicationInitializer extends AbstractAnnotationConfigDispatche
         super.onStartup(servletContext);
         servletContext.setInitParameter("spring.profiles.active", "DEV");
     }
-} {
 }
