@@ -14,7 +14,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
  */
 @Configuration
 @EnableWebMvc
-@ComponentScan("com.polytech")
+@ComponentScan("com.polytech.web, com.polytech.business, com.polytech.repository")
 public class WebConfig extends WebMvcConfigurerAdapter {
 
     //configure JSP view resolver
