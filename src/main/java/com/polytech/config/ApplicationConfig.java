@@ -13,7 +13,7 @@ import javax.sql.DataSource;
  * Created by dev on 3/13/17.
  */
 @Configuration
-@PropertySource("classpath:applicationContext.properties")
+@PropertySource("classpath:application.properties")
 @ComponentScan(basePackages = "com.polytech.repository, com.polytech.business")
 public class ApplicationConfig {
 

@@ -14,7 +14,7 @@ import java.util.List;
  * Created by dev on 3/15/17.
  */
 @Controller
-public class HelloController {
+public class ApplicationController {
 
 
     @Autowired
@@ -25,21 +25,17 @@ public class HelloController {
         return "forward:index.html";
     }
 
-    @RequestMapping(value = "/hello", method = RequestMethod.GET)
-    public String home(){
-        return "Hello";
+    @RequestMapping(value = "/share", method = RequestMethod.POST)
+    public String post(String content){
+        System.out.println(content);
+        publicationService.post(new Post(content));
+        return "redirect:/feed";
     }
 
     @RequestMapping(value = "/feed", method = RequestMethod.GET)
     public String feed(Model model){
         List<Post> posts = publicationService.fetchAll();
         model.addAttribute("posts", posts);
-        return "feeds";
-    }
-
-    @RequestMapping(value = "/share", method = RequestMethod.POST)
-    public void post(String content){
-        System.out.println(content);
-        publicationService.post(new Post(content));
+        return "feed";
     }
 }
