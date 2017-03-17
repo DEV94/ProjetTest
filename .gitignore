@@ -2,5 +2,4 @@
 *.iml
 .idea
 target
-src/main/resources/
 src/main/webapp/resources
