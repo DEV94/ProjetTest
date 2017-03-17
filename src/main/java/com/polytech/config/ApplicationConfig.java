@@ -48,6 +48,6 @@ public class ApplicationConfig {
     @Bean("dataSource")
     @Profile("DEV")
     public DataSource devProdDataSource(){
-        return new EmbeddedDatabaseBuilder().setType(EmbeddedDatabaseType.H2).addScript("create-schema.sql").build();
+        return new EmbeddedDatabaseBuilder().setType(EmbeddedDatabaseType.H2).addScript("create-schema.sql").addScript("default-user.sql").build();
     }
 }
