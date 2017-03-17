@@ -37,7 +37,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                 .antMatchers("/").permitAll()
                 .antMatchers("/login").permitAll()
                 .anyRequest()
-                .authenticated().and()
+                .authenticated()
+                .and()
                 .formLogin().loginPage("/login").defaultSuccessUrl("/feed", true)
                 .and()
                 .logout();

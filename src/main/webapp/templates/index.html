@@ -1,21 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
     <title>Social Network</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
 
     <!-- Custom styles for this template -->
     <style>
         body {
             padding-top: 50px;
-            background-image: url("resources/network.jpg");
+            background-image: url("../resources/network.jpg");
             width: inherit;
             height: inherit;
         }
@@ -59,7 +61,7 @@
 <div class="container">
 
     <div class="starter-template">
-        <form action="/share" method="post" role="form" >
+        <form th:action="@{/share}" method="post" role="form" >
             <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                 <div class="form-group">
                     <textarea class="form-control" name="content" id=""></textarea>

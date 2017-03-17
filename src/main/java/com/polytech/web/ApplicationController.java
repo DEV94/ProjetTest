@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.security.Principal;
 import java.util.List;
 
 /**
@@ -22,11 +23,12 @@ public class ApplicationController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String index(){
-        return "forward:index.html";
+        return "index";
     }
 
     @RequestMapping(value = "/share", method = RequestMethod.POST)
-    public String post(String content){
+    public String post(String content, Principal principal){
+        System.out.println(principal.getName());
         System.out.println(content);
         publicationService.post(new Post(content));
         return "redirect:/feed";
