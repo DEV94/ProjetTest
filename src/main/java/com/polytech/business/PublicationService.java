@@ -20,7 +20,6 @@ public class PublicationService {
     }
 
     public void post(Post post) {
-
         postRepository.save(post);
     }
 
