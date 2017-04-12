@@ -1,7 +1,9 @@
 package com.polytech.web;
 
-import com.polytech.business.Post;
+import com.polytech.business.SignInService;
+import com.polytech.models.Post;
 import com.polytech.business.PublicationService;
+import com.polytech.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,6 +23,9 @@ public class ApplicationController {
     @Autowired
     private PublicationService publicationService;
 
+    @Autowired
+    private SignInService signInService;
+
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String index(){
         return "index";
@@ -33,6 +38,20 @@ public class ApplicationController {
         publicationService.post(new Post(content));
         return "redirect:/feed";
     }
+
+    @RequestMapping(value = "/signin", method = RequestMethod.POST)
+    public String signIn(String name, String password, Principal principal){
+        System.out.println(name);
+        signInService.signIn(new User(name, password, 1));
+        return "index";
+    }
+
+    @RequestMapping(value = "/sign", method = RequestMethod.GET)
+    public String sign(){
+        return "newUser";
+    }
+
+
 
     @RequestMapping(value = "/feed", method = RequestMethod.GET)
     public String feed(Model model){
